@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="website icon" type="png" href="./icons/exchange.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>Konvert.uz</title>
+  </head>
+  <body>
+    <header>
+      <img
+        src="https://icons.veryicon.com/png/o/miscellaneous/simple-icon/exchange-14.png"
+        alt=""
+        width="50"
+        height="50"
+      />
+      <h1>Konvert UZ</h1>
+    </header>
+    <div class="loader-div">
+      <div class="loader"></div>
+    </div>
+    <main>
+      <p id="money-Info"></p>
+      <div class="main">
+        <p class="data"><i class="fa fa-spinner"></i></p>
+        <select id="top-select" onchange="gettop()">
+          <option value="USD">AQSH dollari</option>
+          <option value="EUR">EVRO</option>
+          <option value="RUB">Rossiya rubli</option>
+          <option value="GBP">Angliya funt sterlingi</option>
+          <option value="JPY">Yaponiya iyenasi</option>
+          <option value="AZN">Ozarbayjon manati</option>
+          <option value="BDT">Bangladesh takasi</option>
+          <option value="BGN">Bolgariya levi</option>
+          <option value="BHD">Bahrayn dinori</option>
+          <option value="BND">Bruney dollari</option>
+          <option value="BRL">Braziliya reali</option>
+          <option value="BYN">Belorus rubli</option>
+          <option value="CAD">Kanada dollari</option>
+          <option value="CHF">Shveytsariya franki</option>
+          <option value="CNY">Xitoy yuani</option>
+          <option value="CUP">Kuba pesosi</option>
+          <option value="CZK">Chexiya kronasi</option>
+          <option value="DKK">Daniya kronasi</option>
+          <option value="DZD">Jazoir dinori</option>
+          <option value="EGP">Misr funti</option>
+          <option value="AFN">Afg'oniston afg'onisi</option>
+          <option value="ARS">Argentina pesosi</option>
+          <option value="GEL">Gruziya larisi</option>
+          <option value="HKD">Gongkong dollari</option>
+          <option value="HUF">Vengriya forinti</option>
+          <option value="IDR">Indoneziya rupiyasi</option>
+          <option value="ILS">Isroil shekeli</option>
+          <option value="INR">Hindiston rupiyasi</option>
+          <option value="IQD">Iroq dinori</option>
+          <option value="IRR">Eron riali</option>
+          <option value="ISK">Islandiya kronasi</option>
+          <option value="JOD">Iordaniya dinori</option>
+          <option value="AUD">Avstraliya dollari</option>
+          <option value="KGS">Qirg'iz somi</option>
+          <option value="KHR">Kambodja riyeli</option>
+          <option value="KRW">Koreya Respublikasi voni</option>
+          <option value="KWD">Quvayt dinori</option>
+          <option value="KZT">Qozog'iston tengesi</option>
+          <option value="LAK">Laos kipisi</option>
+          <option value="LBP">Livan funti</option>
+          <option value="LYD">Liviya dinori</option>
+          <option value="MAD">Marokash dirhami</option>
+          <option value="MDL">Moldaviya leyi</option>
+          <option value="MMK">Myanma kyati</option>
+          <option value="MNT">Mongoliya tugriki</option>
+          <option value="MXN">Meksika pesosi</option>
+          <option value="MYR">Malayziya ringgiti</option>
+          <option value="NOK">Norvegiya kronasi</option>
+          <option value="NZD">Yangi Zelandiya dollari</option>
+          <option value="OMR">Ummon riali</option>
+          <option value="PHP">Filippin pesosi</option>
+          <option value="PKR">Pokiston rupiyasi</option>
+          <option value="PLN">Polsha zlotiysi</option>
+          <option value="QAR">Qatar riali</option>
+          <option value="RON">Ruminiya leyi</option>
+          <option value="RSD">Serbiya dinori</option>
+          <option value="AMD">Armaniston drami</option>
+          <option value="SAR">Saudiya Arabiston riali</option>
+          <option value="SDG">Sudan funti</option>
+          <option value="SEK">Shvetsiya kronasi</option>
+          <option value="SGD">Singapur dollari</option>
+          <option value="SYP">Suriya funti</option>
+          <option value="THB">Tailand bati</option>
+          <option value="TJS">Tojikiston somonisi</option>
+          <option value="TMT">Turkmaniston manati</option>
+          <option value="TND">Tunis dinori</option>
+          <option value="TRY">Turkiya lirasi</option>
+          <option value="UAH">Ukraina grivnasi</option>
+          <option value="AED">BAA dirhami</option>
+          <option value="UYU">Urugvay pesosi</option>
+          <option value="VES">Venesuela bolivari</option>
+          <option value="VND">Vetnam dongi</option>
+          <option value="XDR">SDR</option>
+          <option value="YER">Yaman riali</option>
+          <option value="ZAR">Janubiy Afrika randi</option>
+        </select>
+        <form action="" id="submit">
+          <input type="text" value="" id="top" required />
+          <input
+            type="text"
+            value=""
+            id="bottom"
+            readonly
+            oninput="currencyConverter(this.value)"
+            onchange="currencyConverter(this.value)"
+          />
+        </form>
+      </div>
+      <div class="info">
+        <p>
+          Kurs
+          <a href="https://cbu.uz/uz/arkhiv-kursov-valyut/" target="_blank"
+            >Markaziy bankning</a
+          >
+          rasmiy veb saytidan olindi.
+        </p>
+      </div>
+    </main>
+    <footer>
+      <div class="icon">
+        <i class="fa fa-instagram"></i>
+        <a
+          class="by"
+          href="https://www.instagram.com/_asilbek_asqarov_/"
+          target="_blank"
+          >By Asilbek Asqarov</a
+        >
+      </div>
+    </footer>
+    <script src="index.js"></script>
+  </body>
+</html>
