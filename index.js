@@ -7,7 +7,7 @@ const loader = document.querySelector(".loader-div");
 
 //Get api
 const getApi = async () => {
-  const host = `http://cbu.uz/uzc/arkhiv-kursov-valyut/json/`;
+  const host = `https://cbu.uz/uzc/arkhiv-kursov-valyut/json/`;
   const url = await fetch(host);
   const data = await url.json();
   return data;
