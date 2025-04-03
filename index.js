@@ -19,15 +19,15 @@ const getMoney = async () => {
 const gettop = async () => {
   const data = await getMoney();
   loader.style.display = "none";
-  //console.log(data)
   data.forEach((country) => {
     const sum = country.Rate;
     const kun = country.Date;
     const Ccy = country.Ccy;
     const dif = country.Diff;
+    const nom = country.CcyNm_UZ
     if (topSelect.value == Ccy) {
       const res = new Intl.NumberFormat("uz-UZ").format(sum);
-      moneyInfo.innerHTML = `1 ${Ccy} ${res} so'm`;
+      moneyInfo.innerHTML = `1 ${nom} - ${res} so'm`;
       inputBottom.value = `${res} so'm`;
       inputTop.value = "1";
       const num = Number(dif);
@@ -40,10 +40,16 @@ const gettop = async () => {
       }
       inputTop.addEventListener("input", (e) => {
         e.preventDefault();
-        const result = inputTop.value * sum;
-        const res = new Intl.NumberFormat("uz-UZ").format(result);
-        inputBottom.value = `${res} so'm`;
-      });
+        
+        const value = parseFloat(inputTop.value);
+        if (!isNaN(value) && value !== 0) {
+            const result = value * sum;
+            const res = new Intl.NumberFormat("uz-UZ").format(result);
+            inputBottom.value = `${res} so'm`;
+        } else {
+            inputBottom.value = "Iltimos, raqam yozing !";  // Agar qiymat to'g'ri emas bo'lsa, inputni tozalash
+        }
+    });
     }
   });
 };
