@@ -1,6 +1,8 @@
 const moneyInfo = document.getElementById("money-Info");
 const inputTop = document.getElementById("top");
 const inputBottom = document.getElementById("bottom");
+const inputTop1 = document.getElementById("top1");
+const inputBottom1 = document.getElementById("bottom1");
 const topSelect = document.getElementById("top-select");
 const dat = document.querySelector(".data");
 const loader = document.querySelector(".loader-div");
@@ -28,8 +30,8 @@ const gettop = async () => {
     if (topSelect.value == Ccy) {
       const res = new Intl.NumberFormat("uz-UZ").format(sum);
       moneyInfo.innerHTML = `1 ${nom} - ${res} so'm`;
-      inputBottom.value = `${res} so'm`;
-      inputTop.value = "1";
+      inputBottom.value = `${res} SO'M`;
+      inputTop.value = `1 ${Ccy}`;
       const num = Number(dif);
       if (num > 0) {
         dat.innerHTML = `${kun} holatiga +${num}<i class="fa fa-level-up"></i>`;
@@ -38,18 +40,30 @@ const gettop = async () => {
       } else {
         dat.innerHTML = `${kun} holatiga ${num}<i class="	fa fa-level-down"></i>`;
       }
-      inputTop.addEventListener("input", (e) => {
+      inputBottom.addEventListener("input", (e) => {
         e.preventDefault();
-        
+        const value = parseFloat(inputBottom.value);
+        if (!isNaN(value) && value !== 0) {
+            const result = value / sum;  // Teskari hisoblash
+            const res = new Intl.NumberFormat("uz-UZ").format(result);
+            inputTop.value = `${res} ${Ccy}`;  // Natijani valyutaga aylantirilgan ko'rinishda chiqarish
+        } else {
+            inputTop.value = "Iltimos, so'mni yozing !";  // Agar qiymat to'g'ri emas bo'lsa
+        }
+    });
+    
+    inputTop.addEventListener("input", (e) => {
+        e.preventDefault();
         const value = parseFloat(inputTop.value);
         if (!isNaN(value) && value !== 0) {
             const result = value * sum;
             const res = new Intl.NumberFormat("uz-UZ").format(result);
-            inputBottom.value = `${res} so'm`;
+            inputBottom.value = `${res} SO'M`;
         } else {
-            inputBottom.value = "Iltimos, raqam yozing !";  // Agar qiymat to'g'ri emas bo'lsa, inputni tozalash
+            inputBottom.value = "Iltimos, raqam yozing !";  // Agar qiymat to'g'ri emas bo'lsa
         }
     });
+    
     }
   });
 };
